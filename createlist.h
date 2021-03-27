@@ -39,3 +39,4 @@ Register * Add_to_user_register(Register *h, char *_username, char *_password);
 Book * create_book_list();
 Book * load_books( char * file, Book *last); 
 int store_users(Register *h);
+int store_books(Book *last);

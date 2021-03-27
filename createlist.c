@@ -108,3 +108,26 @@ int store_users(Register *h){
 	printf("Users are successfully stored!\n");
 	return 0;
 } 
+
+
+
+
+
+int store_books( Book *last){
+	int i = 0;
+	Book *p = last;
+
+	FILE *file = fopen("book.txt", "w");
+	fprintf(file, "%s\t%s\t%s\t%s\t%s\t%s\n", "ID", "title", "authors", "year", "copies", "borrow");
+//	fprintf(file, "hhhhh");
+	for(i = 0; i<8+n; i++){
+		fprintf(file,"%d\t%s\t%s\t%d\t%d\t%s\n", p->id, p->title, p->authors, p->year, p->copies, p->borrow);
+		p = p->Previous;
+	
+    }
+    
+    fclose(file);
+    printf("Books are successfully stored!\n");
+    return 0;
+    
+}
