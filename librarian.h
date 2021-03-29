@@ -13,3 +13,4 @@ typedef struct _loans Loans;
 
 int librarian_manage(Book *last, Register *h, Loans *head);
 Book * add_book(Book *last);
+Book * remove_book(Book *last, Register *h, Loans *head);

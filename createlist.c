@@ -131,3 +131,75 @@ int store_books( Book *last){
     return 0;
     
 }
+
+
+
+
+
+
+Loans * creat_loans_list(){
+	    Loans *h = (Loans *)malloc(sizeof(Loans));
+	    h->Next = NULL;
+	    return h;
+}
+
+
+
+
+int remove_from_loans_list(Loans *h, char *username){
+	
+	Loans *p = (Loans *)malloc(sizeof(Loans));
+	Loans *q = (Loans *)malloc(sizeof(Loans));
+	 for(p = h; p!=NULL; p = p->Next){
+		if(strcmp(p->username, username) == 0){
+			p->amount = p->amount-1;
+			if(p->amount == 0){
+			    q->Next = p->Next;
+			    free((Loans *)p);
+				
+			}
+		}
+		q = p;
+	
+	}
+	FILE *file = fopen("loans.txt", "w");
+	fprintf(file, "%s\t%s\n", "username", "amount");
+	//	fprintf(file, "hhhhh");
+	for(p = h->Next; p != NULL; p=p->Next){
+		fprintf(file,"%s\t%d\n", p->username, p->amount);
+	}
+	    
+	fclose(file);
+	printf("Loans are successfully stored!\n");
+	return 0;
+}
+
+
+
+
+int add_to_loans_list(Loans *h, char *username){
+	 Loans *p = (Loans *)malloc(sizeof(Loans));
+	 for(p = h; p!=NULL; p = p->Next){
+		if(strcmp(p->username, username) == 0){
+			p->amount = p->amount +1;
+		}
+	}
+	Loans *q = (Loans *)malloc(sizeof(Loans));
+	 q->username = username;
+	 q->amount = 1;
+     q->Next = h->Next;
+     h->Next = q;
+
+	FILE *file = fopen("loans.txt", "w");
+	fprintf(file, "%s\t%s\n", "username", "amount");
+//	fprintf(file, "hhhhh");
+	for(p = h->Next; p != NULL; p=p->Next){
+		fprintf(file,"%s\t%d\n", p->username, p->amount);
+    }
+    
+    fclose(file);
+    printf("Loans are successfully stored!\n");
+     return 0;
+	
+	
+}

@@ -173,3 +173,149 @@ Book * add_book(Book *last){
 	
 	
 }
+
+
+
+
+
+Book * remove_book(Book *last, Register *h, Loans *head){
+	char * title = (char *) malloc (sizeof(char) * 99);
+	char * author = (char *) malloc (sizeof(char) * 99);
+	unsigned int year;
+	Book *t = (Book *)malloc(sizeof(Book));
+	Book *pr;
+	int i = 0;
+	int a = 0;
+	char * option = (char *) malloc (sizeof(char) * 99);
+	printf("Please choose an option:\n1)remove books by title\n2)remove books by author\n3)remove books by year\n4)return to previous menu\nOption:");
+	scanf("%[^\n]%*c", option);
+	if(strcmp(option, "1") == 1 && strcmp(option, "2") == 1 && strcmp(option, "3") == 1 && strcmp(option, "4") == 1)
+	{
+		printf("Sorry, the option you entered was invalid, please try again.\n");
+		do{
+		    librarian_manage(last,h, head);
+		    scanf("%[^\n]%*c", &option);
+        }
+		while(strcmp(option, "1") == 1 && strcmp(option, "2") == 1 && strcmp(option, "3") == 1 && strcmp(option, "4") == 1);
+	
+    }
+    if(strcmp(option, "1") == 0)
+    {    
+        printf("Enter the title of the book you wish to move:");
+	    scanf("%[^\n]%*c", title);
+	    t = last;
+//	    printf("%s", title);
+	    for(i = 0; i<n+8; i++){
+	    	
+		    if(strcmp(t->title, title) == 0){
+//			printf("%s", t->title);
+			pr = t->Previous;
+//			printf("%s", pr->title);
+//			t = pr->Next;
+			pr->Next = t->Next;
+			t->Next->Previous = t->Previous;
+			free((Book *)t); 
+			a = a+1;
+			t = t->Previous;
+//			printf("%s", last->Previous->title);
+		}
+		else
+		{
+			t = t->Previous;
+		}
+	}
+	if(a == 0)
+	{
+	    printf("Sorry, failed to search books.\n");	
+	} 
+	else 
+	{
+		printf("Remove books successfully!\n");
+		return 0;
+	}  	
+	}
+	if(strcmp(option, "2") == 0)
+    {    
+        printf("Enter the author of the book you wish to move:");
+	    scanf("%[^\n]%*c", author);
+	     t = last;
+//	    printf("%s", title);
+	    for(i = 0; i<n+8; i++){
+	    	
+		    if(strcmp(t->authors, author) == 0){
+//			printf("%s", t->title);
+			pr = t->Previous;
+//			printf("%s", pr->title);
+//			t = pr->Next;
+			pr->Next = t->Next;
+			t->Next->Previous = t->Previous;
+			free((Book *)t); 
+			
+			a = a+1;
+			t = t->Previous;
+//			printf("%s", last->Previous->title);
+		}
+		else
+		{
+			t = t->Previous;
+		}
+    	
+	}
+	if(a == 0)
+	{
+	    printf("Sorry, failed to search books.\n");	
+    	
+	}
+	else
+	{
+		printf("Remove books successfully!\n");
+		return 0;
+	}
+}
+
+	if(strcmp(option, "3") == 0)
+    {    
+        printf("Enter the year of the book you wish to move:");
+	    scanf("%d", &year);
+//	    printf("%d", year);
+	    t = last;
+//	    printf("%s", title);
+	    for(i = 0; i<n+8; i++){
+	    	
+		    if(t->year == year){
+//			printf("%s", t->title);
+			pr = t->Previous;
+//			printf("%s", pr->title);
+//			t = pr->Next;
+			pr->Next = t->Next;
+			t->Next->Previous = t->Previous;
+			free((Book *)t); 
+			printf("Remove books successfully!\n");
+			a = a+1;
+			t = t->Previous;
+			
+//			printf("%s", last->Previous->title);
+		}
+		else
+		{
+			t = t->Previous;
+		}
+	}
+	if(a == 0)
+	{
+	    printf("Sorry, failed to searchs books.\n");	
+    	
+	}
+	else
+	{
+		getchar();
+		return 0;
+	}
+}
+	if(strcmp(option, "4") == 0){
+		librarian_manage(last,h, head);
+	}
+	return last;
+
+}
+

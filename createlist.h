@@ -40,3 +40,6 @@ Book * create_book_list();
 Book * load_books( char * file, Book *last); 
 int store_users(Register *h);
 int store_books(Book *last);
+int add_to_loans_list(Loans *h, char *username);
+int remove_from_loans_list(Loans *h, char *username);
+Loans * creat_loans_list();
